@@ -10,10 +10,13 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
-    name: Builds on ubuntu
+  test:
+    name: Run tests
     runs-on: ubuntu-latest
     steps:
+    - uses: zcong1993/setup-timezone@master
+      with:
+        timezone: Europe/Berlin
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
@@ -22,4 +25,17 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: npm run test:unit
-
+    
+  deploy:
+    name: Builds and deploys demo to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+      working-directory: ./demo
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run generate
+    - run: npm run deploy
