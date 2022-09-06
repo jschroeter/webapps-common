@@ -14,9 +14,6 @@ jobs:
     name: Builds on ubuntu
     runs-on: ubuntu-latest
     steps:
-    - uses: zcong1993/setup-timezone@master
-      with:
-        timezone: Europe/Berlin
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
