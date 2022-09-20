@@ -27,6 +27,7 @@ jobs:
     - run: npm run test:unit
   deploy:
     name: Builds and deploys demo to GitHub Pages
+    needs: test
     runs-on: ubuntu-latest
     defaults:
       run:
