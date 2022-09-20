@@ -29,12 +29,12 @@ jobs:
     name: Builds and deploys demo to GitHub Pages
     runs-on: ubuntu-latest
     steps:
-      working-directory: ./demo
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
         node-version: 14
         cache: 'npm'
+    - working-directory: ./demo
     - run: npm ci
     - run: npm run generate
     - run: npm run deploy
